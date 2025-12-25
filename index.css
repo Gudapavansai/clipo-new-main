@@ -47,12 +47,69 @@
    Fixed Background - Works on All Devices
    ========================================== */
 
-/* Hide the gradient orbs on the background container if not needed */
+/* ==========================================
+   Fixed Background - Instagram Inspired
+   ========================================== */
+
 .background-container {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -11;
+    overflow: hidden;
+    pointer-events: none;
+    display: block;
+    background-color: var(--c-bg);
 }
 
-/* Use a pseudo-element for truly fixed background on all devices */
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    will-change: transform;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, #f09433, transparent);
+    top: -20vw;
+    right: -10vw;
+    animation: floatingOrb 20s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, #dc2743, transparent);
+    bottom: -15vw;
+    left: -10vw;
+    animation: floatingOrb 25s infinite alternate-reverse ease-in-out;
+}
+
+.orb-3 {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, #bc1888, transparent);
+    top: 20%;
+    left: 30%;
+    animation: floatingOrb 30s infinite alternate ease-in-out;
+}
+
+@keyframes floatingOrb {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(5vw, 5vh);
+    }
+}
+
+/* Use a pseudo-element for truly fixed background layers */
 body::before {
     content: '';
     position: fixed;
@@ -63,37 +120,35 @@ body::before {
     width: 100vw;
     height: 100vh;
     z-index: -10;
-    background-image: url('images/CLipo Bg  Black.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: var(--c-bg);
     pointer-events: none;
     will-change: auto;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
 
-/* Ensure body has proper setup */
-body {
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* Light mode background - Explicit */
+/* Base gradients for each theme to ensure clear text */
 body:has(input[value="light"]:checked)::before {
-    background-image: url('images/bg.png');
+    background: linear-gradient(135deg, #f8f8f9 0%, #fff5f8 100%);
 }
 
-/* Dark mode background */
 body:has(input[value="dark"]:checked)::before {
-    background-image: url('images/CLipo Bg  Black.png');
+    background: linear-gradient(135deg, #0f0f10 0%, #1c0a1c 100%);
 }
 
-/* Dim mode background */
 body:has(input[value="dim"]:checked)::before {
-    background-image: url('images/CLipo Bg  Black.png');
+    background: linear-gradient(135deg, #0a0a0b 0%, #140814 100%);
+}
+
+/* Orb theme overrides */
+body:has(input[value="light"]:checked) .gradient-orb {
+    opacity: 0.12;
+    mix-blend-mode: soft-light;
+}
+
+body:has(input[value="dim"]:checked) .gradient-orb {
+    opacity: 0.08;
+    filter: blur(120px);
 }
 
 /* ==========================================
@@ -224,6 +279,8 @@ body {
     /* Ensure body has a background to cover the fixed footer z-index -1 */
     background-color: var(--c-bg);
     position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
