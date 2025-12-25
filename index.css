@@ -1336,7 +1336,13 @@ video.hero__device-image {
     }
 
     .hero__device {
-        max-width: 300px;
+        width: 85vw;
+        /* Use viewport width for better responsiveness */
+        max-width: 380px;
+        aspect-ratio: 1 / 1 !important;
+        height: auto !important;
+        margin: 0 auto;
+        display: block;
     }
 
     /* iPhone-style Top Navigation (Like Reference Image) */
