@@ -127,28 +127,63 @@ body::before {
     -webkit-transform: translateZ(0);
 }
 
-/* Base gradients for each theme to ensure clear text */
+/* Base immersive Instagram gradients */
 body:has(input[value="light"]:checked)::before {
-    background: linear-gradient(45deg, #fff9f0 0%, #ffedf0 50%, #fcf0ff 100%);
+    background: linear-gradient(45deg, #fffaf4 0%, #ffeeee 50%, #f9f0ff 100%);
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background: linear-gradient(45deg, #140d04 0%, #140708 50%, #0d0414 100%);
+    background: linear-gradient(45deg, #2d1b08 0%, #2a0e10 50%, #1a082d 100%);
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background: linear-gradient(45deg, #0d0802 0%, #0d0405 50%, #08020d 100%);
+    background: linear-gradient(45deg, #1e1205 0%, #1d090a 50%, #11051e 100%);
 }
 
-/* Orb theme overrides */
+/* Redundant readability layer - ensures text ALWAYS pops */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -9;
+    pointer-events: none;
+    transition: background 400ms ease;
+}
+
+body:has(input[value="light"]:checked)::after {
+    background: rgba(255, 255, 255, 0.4);
+    /* Gentle softening */
+}
+
+body:has(input[value="dark"]:checked)::after {
+    background: rgba(0, 0, 0, 0.5);
+    /* Deepening for contrast */
+}
+
+body:has(input[value="dim"]:checked)::after {
+    background: rgba(0, 0, 0, 0.7);
+    /* Maximum focus */
+}
+
+/* Orb theme overrides - make them feel more like "light leaks" */
 body:has(input[value="light"]:checked) .gradient-orb {
-    opacity: 0.2;
-    mix-blend-mode: multiply;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+    filter: blur(140px);
+}
+
+body:has(input[value="dark"]:checked) .gradient-orb {
+    opacity: 0.25;
+    mix-blend-mode: screen;
+    filter: blur(120px);
 }
 
 body:has(input[value="dim"]:checked) .gradient-orb {
-    opacity: 0.12;
-    filter: blur(120px);
+    opacity: 0.18;
+    filter: blur(150px);
 }
 
 /* ==========================================
