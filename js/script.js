@@ -711,3 +711,28 @@ if (heroPlayBtn) {
         openVideoModal('https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4', true);
     });
 }
+
+// ==========================================
+// Security & Brand Protection
+// ==========================================
+
+// 1. Disable Right-Click (Context Menu)
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+}, false);
+
+// 2. Disable Common Developer Tool Shortcuts
+document.addEventListener('keydown', (e) => {
+    // Disable F12
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+    // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Chrome/Edge/Firefox)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'j' || e.key === 'c' || e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+        e.preventDefault();
+    }
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+        e.preventDefault();
+    }
+}, false);
