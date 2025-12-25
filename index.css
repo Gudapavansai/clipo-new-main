@@ -68,7 +68,7 @@
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
-    opacity: 0.15;
+    opacity: 0.25;
     will-change: transform;
 }
 
@@ -129,25 +129,25 @@ body::before {
 
 /* Base gradients for each theme to ensure clear text */
 body:has(input[value="light"]:checked)::before {
-    background: linear-gradient(135deg, #f8f8f9 0%, #fff5f8 100%);
+    background: linear-gradient(45deg, #fff9f0 0%, #ffedf0 50%, #fcf0ff 100%);
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background: linear-gradient(135deg, #0f0f10 0%, #1c0a1c 100%);
+    background: linear-gradient(45deg, #140d04 0%, #140708 50%, #0d0414 100%);
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background: linear-gradient(135deg, #0a0a0b 0%, #140814 100%);
+    background: linear-gradient(45deg, #0d0802 0%, #0d0405 50%, #08020d 100%);
 }
 
 /* Orb theme overrides */
 body:has(input[value="light"]:checked) .gradient-orb {
-    opacity: 0.12;
-    mix-blend-mode: soft-light;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
 }
 
 body:has(input[value="dim"]:checked) .gradient-orb {
-    opacity: 0.08;
+    opacity: 0.12;
     filter: blur(120px);
 }
 
